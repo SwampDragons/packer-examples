@@ -1,0 +1,34 @@
+{
+    "description": "This template shows how to use packer + docker",
+    "_comment": "please visit https://www.packer.io/docs/builders/docker.html",
+    "_comment": "You must have docker installed already for this to work",
+    "min_packer_version": "1.1.0",
+    "builders": [
+    {
+        "image": "ubuntu:xenial",
+        "type": "docker",
+        "name": "foobar",
+        "export_path": "./output/test_image_{{timestamp}}.tar"
+    }
+    ],
+    "_comment": "You can write notes here, since we can't have native comments",
+    "_comment": "sadly, you can only have comments at this root level.",
+    "provisioners": [
+    {
+        "type": "file",
+        "source": "./scripts/welcome.txt",
+        "destination": "/tmp"
+    },
+    {
+        "type": "shell",
+        "inline": [
+            "ls -lR /tmp",
+            "cat /tmp/welcome.txt"
+        ]
+    },
+    {
+        "type": "shell",
+        "script": "./scripts/example_bash.sh"
+    }
+    ]
+}

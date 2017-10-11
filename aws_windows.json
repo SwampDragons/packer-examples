@@ -1,0 +1,47 @@
+{
+  "_comment": "access key and secret key are drawn from env variables.",
+  "builders": [
+  {
+    "type": "amazon-ebs",
+    "access_key": "{{ user `aws_access_key` }}",
+    "secret_key": "{{ user `aws_secret_key` }}",
+    "region": "us-east-1",
+    "instance_type": "m3.medium",
+    "source_ami_filter": {
+      "filters": {
+        "virtualization-type": "hvm",
+        "name": "*WindowsServer2012R2*",
+        "root-device-type": "ebs"
+      },
+      "most_recent": true,
+      "owners": "amazon"
+    },    
+    "ami_name": "packer-demo-{{timestamp}}",
+    "user_data_file": "./boot_config/packer_bootstrap_win.txt",
+    "communicator": "winrm",
+    "winrm_username": "Administrator",
+    "winrm_password": "SuperS3cr3t!"
+  }],
+  "provisioners": [
+    {
+      "type": "powershell",
+      "environment_vars": ["DEVOPS_LIFE_IMPROVER=PACKER"],
+      "inline": [
+          "Write-Output(\"HELLO NEW USER;)",
+          "Write-Output(\"WELCOME TO $Env:DEVOPS_LIFE_IMPROVER\")"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "script": "./scripts/sample_script.ps1",
+      "type": "powershell",
+      "environment_vars": [
+        "VAR1=A`$Dollar",
+        "VAR2=A``Backtick",
+        "VAR3=A`'SingleQuote"
+      ]
+    }
+  ]
+}
