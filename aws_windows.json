@@ -35,8 +35,8 @@
       "type": "windows-restart"
     },
     {
-      "script": "./scripts/sample_script.ps1",
       "type": "powershell",
+      "script": "./scripts/sample_script.ps1",      
       "environment_vars": [
         "VAR1=A`$Dollar",
         "VAR2=A``Backtick",
