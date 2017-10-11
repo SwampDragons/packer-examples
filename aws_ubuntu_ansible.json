@@ -17,6 +17,8 @@
         "ssh_username": "ubuntu",
         "ami_name": "packer-example {{timestamp}}"
     }], 
+    "_comment": "Note that the ansible playbook runs on the vm on aws, not on",
+    "_comment": "the computer running Packer",
     "provisioners": [
     {
         "type": "shell",
