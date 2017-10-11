@@ -11,7 +11,8 @@ Hashicorp.
 Below is a checklist of core-supported Packer features you will see represented
 in this repo; the goal is to show an example of each feature on the list:
 
-###Builders
+### Builders
+
 - [x] Amazon EC2
 - [ ] Azure
 - [x] Docker
@@ -19,14 +20,16 @@ in this repo; the goal is to show an example of each feature on the list:
 - [ ] VMware
 - [ ] VirtualBox
 
-###Provisioners
+### Provisioners
+
 - [x] File
 - [x] PowerShell
 - [x] Shell
 - [x] Windows Restart
 - [ ] Windows Shell
 
-###Post-Processors
+### Post-Processors
+
 - [ ] Amazon Import
 - [ ] Artifice
 - [ ] Atlas
@@ -36,5 +39,6 @@ in this repo; the goal is to show an example of each feature on the list:
 - [ ] Vagrant
 - [ ] Vagrant Cloud
 
-###Non-Core but popular
+### Non-Core but popular
+
 - [x] Ansible
