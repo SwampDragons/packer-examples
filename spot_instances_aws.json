@@ -1,0 +1,33 @@
+{
+ "variables": {
+        "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+        "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}"
+    },
+    "builders": [
+        {
+            "access_key": "{{user `aws_access_key`}}",
+            "ami_name": "packer-example-spot-instance",
+            "force_deregister": true,
+            "instance_type": "m3.medium",
+            "region": "us-east-1",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm",
+                    "name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+                    "root-device-type": "ebs"
+                },
+                "owners": ["099720109477"],
+                "most_recent": true
+            },
+            "ssh_username": "ubuntu",
+            "type": "amazon-ebs",
+            "spot_price": "auto",
+            "spot_price_auto_product": "Linux/UNIX",
+            "run_volume_tags": {
+                "Name": "Example of Spot Instances",
+                "Project": "Packer-Examples"
+            }            
+        }
+    ]
+}
